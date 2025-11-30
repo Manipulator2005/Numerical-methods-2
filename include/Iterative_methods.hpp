@@ -3,8 +3,7 @@
 #include "Matrix.hpp"
 
 /**
- * @brief namespace containing Householder decomposition matrix Q from equation A = Q * T * Q^T and function computing
- * the decomposition.
+ * @brief namespace containing realisation of two Chebyshev methods.
  */
 namespace Chebyshev_methods {
 auto chebyshev_one_step(const Matrix &matrixA, const std::vector<double> &vector_f, size_t iter_num,
