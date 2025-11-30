@@ -52,5 +52,7 @@ auto main() -> int {
     const std::pair<double, double> spectrum = gershgorinBounds(matrixSystem);
 
     std::cout << spectrum.first << ' ' << spectrum.second << '\n';
+
+    Chebyshev_methods::chebyshev_one_step(matrixSystem, vector_f, 512, true_solution); // NOLINT
     Chebyshev_methods::chebyshev_two_step(matrixSystem, vector_f, 512, true_solution); // NOLINT
 }
