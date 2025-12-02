@@ -46,9 +46,6 @@ auto main() -> int {
     std::vector<double> vector_f(size);
     matvec(matrixSystem, true_solution, vector_f);
 
-    Matrix matrixSource(size);
-    copy(matrixSystem, matrixSource);
-
     const std::pair<double, double> spectrum = gershgorinBounds(matrixSystem);
 
     std::cout << spectrum.first << ' ' << spectrum.second << '\n';
