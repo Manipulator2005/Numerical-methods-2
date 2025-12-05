@@ -61,7 +61,8 @@ auto operator*(double tau, const std::vector<double> &vec) -> std::vector<double
 // NOLINTEND{llvm-prefer-static-over-anonymous-namespace}
 
 auto Chebyshev_methods::chebyshev_one_step(const Matrix &matrixA, const std::vector<double> &vector_f, size_t iter_num,
-                                           const std::vector<double> &true_solution) -> std::vector<double> { // NOLINT
+                                           const std::vector<double> &true_solution, bool graphic)
+    -> std::vector<double> {
     const size_t size = matrixA.get_size();
     const std::pair<double, double> spectrum = gershgorinBounds(matrixA);
 
@@ -83,7 +84,9 @@ auto Chebyshev_methods::chebyshev_one_step(const Matrix &matrixA, const std::vec
         y_i = y_i + tau_i * (vector_f - multiplied);
 
         // для построения графиков:
-        // std::cout << i + 1 << ": " << norm(y_i - true_solution) << '\n';
+        if (graphic) {
+            std::cout << i + 1 << ": " << norm(y_i - true_solution) << '\n';
+        }
     }
 
     return y_i;

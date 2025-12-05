@@ -34,7 +34,8 @@ auto operator-(const std::vector<double> &vec_1, const std::vector<double> &vec_
 // NOLINTEND{llvm-prefer-static-over-anonymous-namespace}
 
 auto Chebyshev_methods::chebyshev_two_step(const Matrix &matrixA, const std::vector<double> &vector_f, size_t iter_num,
-                                           const std::vector<double> &true_solution) -> std::vector<double> { // NOLINT
+                                           const std::vector<double> &true_solution, bool graphic)
+    -> std::vector<double> {
     const size_t size = matrixA.get_size();
     const std::pair<double, double> spectrum = gershgorinBounds(matrixA);
 
@@ -61,7 +62,9 @@ auto Chebyshev_methods::chebyshev_two_step(const Matrix &matrixA, const std::vec
         y_prev = tmp_vec;
 
         // для построения графиков:
-        // std::cout << i + 1 << ": " << norm(y_cur - true_solution) << '\n';
+        if (graphic) {
+            std::cout << i + 1 << ": " << norm(y_cur - true_solution) << '\n';
+        }
     }
 
     return y_cur;
