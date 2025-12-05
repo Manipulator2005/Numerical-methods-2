@@ -1,7 +1,7 @@
 #include "Iterative_methods.hpp"
 #include "Matrix.hpp"
 #include <cstddef>
-#include <iostream>
+#include <iostream> // NOLINT
 #include <utility>
 #include <vector>
 
@@ -34,7 +34,7 @@ auto operator-(const std::vector<double> &vec_1, const std::vector<double> &vec_
 // NOLINTEND{llvm-prefer-static-over-anonymous-namespace}
 
 auto Chebyshev_methods::chebyshev_two_step(const Matrix &matrixA, const std::vector<double> &vector_f, size_t iter_num,
-                                           const std::vector<double> &true_solution) -> std::vector<double> {
+                                           const std::vector<double> &true_solution) -> std::vector<double> { // NOLINT
     const size_t size = matrixA.get_size();
     const std::pair<double, double> spectrum = gershgorinBounds(matrixA);
 
@@ -59,7 +59,9 @@ auto Chebyshev_methods::chebyshev_two_step(const Matrix &matrixA, const std::vec
         matvec(matrixDiff, y_cur, multiplied);
         y_cur = alpha_cur * multiplied + (1 - alpha_cur) * y_prev + alpha_cur * tau0 * vector_f;
         y_prev = tmp_vec;
-        std::cout << i + 1 << ": " << norm(y_cur - true_solution) << '\n';
+
+        // для построения графиков:
+        // std::cout << i + 1 << ": " << norm(y_cur - true_solution) << '\n';
     }
 
     return y_cur;
